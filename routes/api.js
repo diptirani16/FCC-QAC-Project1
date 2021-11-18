@@ -29,7 +29,7 @@ module.exports = function (app) {
     }
 
     if(invalidNum && invalidUnit){
-      return res.send('invalid number & unit')
+      return res.send('invalid number and unit')
     }
     else if(invalidNum) {
       return res.send('invalid number');

@@ -53,7 +53,7 @@ function ConvertHandler() {
       input = input.toLowerCase();
 
       for(let i=0; i<input.length; i++){
-          if((input.charAt(i) !== ' ' && isNaN(input.charAt(i))) && (input.charAt(i) !== '.' || input.charAt(i) !== '/')){
+          if((input.charAt(i) !== ' ' && isNaN(input.charAt(i))) && (input.charAt(i) !== '.' && input.charAt(i) !== '/')){
               unitAsString += input.charAt(i);
           }
       }
