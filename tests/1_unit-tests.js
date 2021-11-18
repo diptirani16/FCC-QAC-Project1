@@ -80,7 +80,7 @@ suite('Unit Tests', function(){
 
         });
 
-        suite('Reading unit conversion', () => {
+        suite('Reading return unit for each input unit', () => {
             test('gal', () => {
                 assert.equal(convertHandler.getReturnUnit('gal'), 'L')
             });
@@ -103,6 +103,12 @@ suite('Unit Tests', function(){
 
             test('kg', () => {
                 assert.equal(convertHandler.getReturnUnit('kg'), 'lbs')
+            });
+
+            test('incorrect unit', () => {
+                assert.throws(() => {
+                    convertHandler.getReturnUnit('kbps')
+                }, 'Invalid Unit')
             });
         })
 
@@ -130,6 +136,12 @@ suite('Unit Tests', function(){
 
             test('Kilograms', () => {
                 assert.equal(convertHandler.spellOutUnit('kg'), 'kilograms');
+            });
+
+            test('incorrect unit', () => {
+                assert.throws(() => {
+                    convertHandler.spellOutUnit('kbps')
+                }, 'Invalid Unit')
             });
         })
     });
