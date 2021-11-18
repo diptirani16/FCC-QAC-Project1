@@ -10,20 +10,20 @@ function ConvertHandler() {
         for(let i=0; i<input.length; i++){
             if(!isNaN(input.charAt(i)) || input.charAt(i) === '.' || input.charAt(i) === '/'){
                 numAsString += input.charAt(i);
+              }
             }
-        }
-        let numArray = numAsString.split('/');
-        if(numArray.length === 2 && numArray[0] !== 0 && numArray[1] !== 0){
-            return parseFloat(numArray[0]/parseFloat(numArray[1]));
-        }
-        else{
-            throw new Error('Invalid Number');
-        }
-      }
-
-      // input = 4gal , output = 4
-      else{
-          result = parseFloat(numAsString);
+            let numArray = numAsString.split('/');
+            if(numArray.length === 2 && numArray[0] !== 0 && numArray[1] !== 0){
+              return parseFloat(numArray[0]/parseFloat(numArray[1]));
+            }
+            else{
+              throw new Error('Invalid Number');
+            }
+          }
+          
+          // input = 4gal , output = 4
+          else{
+            result = parseFloat(input);
       }
 
       // input = kg , output = 1
@@ -47,10 +47,10 @@ function ConvertHandler() {
       // input = 1/2km , output = km
       // input = 5.4/3lbs , output = lbs
       // input = kg , output = kg
-      let validUnits = ['gal', 'l', 'mi', 'km', 'lbs', 'kg']
+      let validUnits = ['gal', 'L', 'mi', 'km', 'lbs', 'kg']
 
       let unitAsString = '';
-      input = input.lowercase();
+      input = input.toLowerCase();
 
       for(let i=0; i<input.length; i++){
           if((input.charAt(i) !== ' ' && isNaN(input.charAt(i))) && (input.charAt(i) !== '.' || input.charAt(i) !== '/')){
@@ -58,10 +58,11 @@ function ConvertHandler() {
           }
       }
 
+      if(unitAsString === 'l'){
+        unitAsString = unitAsString.toUpperCase()
+      }
+
       if(validUnits.includes(unitAsString)){
-        if(unitAsString === 'l'){
-          result = unitAsString.toUpperCase()
-        }
         result = unitAsString
       }
       else {
@@ -75,7 +76,7 @@ function ConvertHandler() {
       let result;
 
       if(initUnit !== 'L'){
-        initUnit = initUnit.lowercase()
+        initUnit = initUnit.toLowerCase()
       }
 
       let convertionList = {
@@ -87,7 +88,7 @@ function ConvertHandler() {
         'kg': 'lbs'
       }
       if(convertionList.hasOwnProperty(initUnit)){
-        result = convertionList.initUnit
+        result = convertionList[initUnit];
       }
       else {
         throw new Error('Invalid Unit')
@@ -98,7 +99,7 @@ function ConvertHandler() {
   
     this.spellOutUnit = function(unit) {
       let result;
-      unit = unit.lowercase()
+      unit = unit.toLowerCase()
       let spellingList = {
         'gal': 'gallons',
         'l': 'liters',
@@ -109,7 +110,7 @@ function ConvertHandler() {
       }
 
       if(spellingList.hasOwnProperty(unit)){
-        result = spellingList.unit
+        result = spellingList[unit];
       }
       else {
         throw new Error('Invalid Unit')
@@ -126,7 +127,7 @@ function ConvertHandler() {
       let result;
 
       if(initUnit !== 'L'){
-        initUnit = initUnit.lowercase()
+        initUnit = initUnit.toLowerCase()
       }
 
       switch(initUnit){
